@@ -1,0 +1,105 @@
+﻿<Window x:Class="EasyFanta.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasyFanta.Views"  
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
+        Title="MainWindow" WindowState="Maximized">
+    <Window.Resources>
+        <CollectionViewSource Source="{Binding AllAvailablePlayers}" x:Key="playersViewSource"  >
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Price"/>
+                <scm:SortDescription PropertyName="Name"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.SearchCommand}" Executed="SearchCommandExecuted"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Search:" Grid.Row="0" Grid.Column="0" Margin="2"/>
+            <TextBox x:Name="searchTxt" Grid.Row="0" Grid.Column="1" Margin="2" 
+                     Width="100" HorizontalAlignment="Left" TextChanged="SearchTextChanged" KeyUp="searchTxtKeyUp"/>
+
+            <Button Grid.Row="0" Grid.Column="2" Margin="2" Padding="5"
+                    Click="ClearBtnClick">
+                <iconPacks:FontAwesome Kind="TrashSolid"/>
+            </Button>
+            <Button Grid.Row="0" Grid.Column="3" Margin="2" Padding="5"
+                    Click="ReloadPlayersBtnClick">
+                <iconPacks:FontAwesome Kind="SyncSolid"/>
+            </Button>
+
+            <Button Grid.Row="0" Grid.Column="4" Margin="2" Padding="5" Click="AddTeamBtnClick">
+                <iconPacks:FontAwesome Kind="PlusCircleSolid"/>
+            </Button>
+
+            <Button Grid.Row="0" Grid.Column="5" Margin="2" Padding="5" Click="SaveBtnClick">
+                <iconPacks:FontAwesome Kind="SaveSolid"/>
+            </Button>
+        </Grid>
+
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" x:Name="allPlayersGrid" 
+                  ItemsSource="{Binding AllAvailablePlayersView}" IsTextSearchEnabled="True" 
+                  SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" 
+                  PreviewMouseLeftButtonDown="dataGrid_PreviewMouseLeftButtonDown"
+                  PreviewMouseMove="DataGrid_PreviewMouseMove" PreviewMouseUp="dataGrid_PreviewMouseUp">
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Blue"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Blue"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+        </DataGrid>
+
+
+
+
+        <ItemsControl Grid.Row="1" Grid.Column="1" 
+                      ItemsSource="{Binding AllTeams}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:TeamView DataContext="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </Grid>
+</Window>
