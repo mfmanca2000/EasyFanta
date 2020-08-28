@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EasyFanta.Views"  
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        mc:Ignorable="d"
+        mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="600" WindowStyle="ThreeDBorderWindow"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
         Title="MainWindow" WindowState="Maximized">
     <Window.Resources>
@@ -32,8 +32,6 @@
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -41,32 +39,42 @@
 
             <Label Content="Search:" Grid.Row="0" Grid.Column="0" Margin="2"/>
             <TextBox x:Name="searchTxt" Grid.Row="0" Grid.Column="1" Margin="2" 
-                     Width="100" HorizontalAlignment="Left" TextChanged="SearchTextChanged" KeyUp="searchTxtKeyUp"/>
+                     Width="100" HorizontalAlignment="Left" TextChanged="SearchTextChanged" 
+                     KeyUp="searchTxtKeyUp" />
 
-            <Button Grid.Row="0" Grid.Column="2" Margin="2" Padding="5"
+            <Button Grid.Row="0" Grid.Column="2" Margin="2" Padding="5" ToolTip="Cancella"
                     Click="ClearBtnClick">
                 <iconPacks:FontAwesome Kind="TrashSolid"/>
             </Button>
-            <Button Grid.Row="0" Grid.Column="3" Margin="2" Padding="5"
+            
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="3" Margin="50,2" HorizontalAlignment="Right">
+                <Button Padding="5" ToolTip="Ricarica la lista" Margin="2,0"
                     Click="ReloadPlayersBtnClick">
-                <iconPacks:FontAwesome Kind="SyncSolid"/>
-            </Button>
+                    <iconPacks:FontAwesome Kind="SyncSolid"/>
+                </Button>
 
-            <Button Grid.Row="0" Grid.Column="4" Margin="2" Padding="5" Click="AddTeamBtnClick">
-                <iconPacks:FontAwesome Kind="PlusCircleSolid"/>
-            </Button>
+                <Button Padding="5" Click="AddTeamBtnClick" ToolTip="Aggiungi Squadra" Margin="2,0">
+                    <iconPacks:FontAwesome Kind="PlusCircleSolid"/>
+                </Button>
 
-            <Button Grid.Row="0" Grid.Column="5" Margin="2" Padding="5" Click="SaveBtnClick">
-                <iconPacks:FontAwesome Kind="SaveSolid"/>
-            </Button>
+                <Button Padding="5" Click="SaveBtnClick" ToolTip="Salva Squadre" Margin="2,00">
+                    <iconPacks:FontAwesome Kind="SaveSolid"/>
+                </Button>
+            </StackPanel>
+            
         </Grid>
 
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" x:Name="allPlayersGrid" 
-                  ItemsSource="{Binding AllAvailablePlayersView}" IsTextSearchEnabled="True" 
-                  SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" 
-                  PreviewMouseLeftButtonDown="dataGrid_PreviewMouseLeftButtonDown"
+                  ItemsSource="{Binding AllAvailablePlayersView, IsAsync=True}" IsTextSearchEnabled="True" 
+                  SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" AutoGenerateColumns="False"
+                  PreviewMouseLeftButtonDown="dataGrid_PreviewMouseLeftButtonDown" EnableRowVirtualization="True"
                   PreviewMouseMove="DataGrid_PreviewMouseMove" PreviewMouseUp="dataGrid_PreviewMouseUp">
-
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Role" Binding="{Binding Role}" Width="40"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="130"/>
+                <DataGridTextColumn Header="Team" Binding="{Binding Team}" Width="100"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="40"/>
+            </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>
@@ -87,8 +95,7 @@
 
 
 
-        <ItemsControl Grid.Row="1" Grid.Column="1" 
-                      ItemsSource="{Binding AllTeams}">
+        <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllTeams}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>

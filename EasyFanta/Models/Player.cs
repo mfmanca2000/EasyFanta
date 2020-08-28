@@ -13,7 +13,9 @@ namespace EasyFanta.Models
         private string team;
         private int price;
         private string name;
+        private string teamImagePath;
         
+
         public int Id {
             get
             {
@@ -74,6 +76,19 @@ namespace EasyFanta.Models
                 Set<int>(() => this.Price, ref price, value);
             }
         }
+
+        public string TeamImagePath
+        {
+            get
+            {
+                return teamImagePath;
+            }
+            set
+            {
+                Set<string>(() => this.TeamImagePath, ref teamImagePath, value);
+            }
+        }
+
         public Player(int id, string role, string name, string team, int price)
         {
             this.Id = id;
@@ -96,6 +111,7 @@ namespace EasyFanta.Models
             this.Name = name;
             this.Team = team;
             this.Price = price;
+            this.TeamImagePath = "/Images/" + team + ".png";
         }
 
         public override bool Equals(object obj)

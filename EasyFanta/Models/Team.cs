@@ -16,6 +16,7 @@ namespace EasyFanta.Models
         private Dictionary<string, int> maxPlayersPerRole;
         private bool isPopupOpen;
         private string popupText;
+        
 
         public int Id
         {
@@ -89,6 +90,10 @@ namespace EasyFanta.Models
             }
         }
 
+
+        
+
+
         public Team(int id, string name, int availableAmount, int maxGoalkeepers, int maxDefenders, int maxMidfields, int maxForwards)
         {
             this.id = id;
@@ -99,7 +104,7 @@ namespace EasyFanta.Models
             maxPlayersPerRole["P"] = maxGoalkeepers;
             maxPlayersPerRole["D"] = maxDefenders;
             maxPlayersPerRole["C"] = maxMidfields;
-            maxPlayersPerRole["A"] = maxForwards;
+            maxPlayersPerRole["A"] = maxForwards;            
         }
 
         public bool AddPlayer(Player player)

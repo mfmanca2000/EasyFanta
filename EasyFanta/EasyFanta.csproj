@@ -8,6 +8,26 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="Images\atalanta.png" />
+    <None Remove="Images\benevento.png" />
+    <None Remove="Images\bologna.png" />
+    <None Remove="Images\cagliari.png" />
+    <None Remove="Images\crotone.png" />
+    <None Remove="Images\fiorentina.png" />
+    <None Remove="Images\genoa.png" />
+    <None Remove="Images\inter.png" />
+    <None Remove="Images\juventus.png" />
+    <None Remove="Images\lazio.png" />
+    <None Remove="Images\milan.png" />
+    <None Remove="Images\napoli.png" />
+    <None Remove="Images\parma.png" />
+    <None Remove="Images\roma.png" />
+    <None Remove="Images\sampdoria.png" />
+    <None Remove="Images\sassuolo.png" />
+    <None Remove="Images\spezia.png" />
+    <None Remove="Images\torino.png" />
+    <None Remove="Images\udinese.png" />
+    <None Remove="Images\verona.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +42,29 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.7" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\atalanta.png" />
+    <Resource Include="Images\benevento.png" />
+    <Resource Include="Images\bologna.png" />
+    <Resource Include="Images\cagliari.png" />
+    <Resource Include="Images\crotone.png" />
+    <Resource Include="Images\fiorentina.png" />
+    <Resource Include="Images\genoa.png" />
+    <Resource Include="Images\inter.png" />
+    <Resource Include="Images\juventus.png" />
+    <Resource Include="Images\lazio.png" />
+    <Resource Include="Images\milan.png" />
+    <Resource Include="Images\napoli.png" />
+    <Resource Include="Images\parma.png" />
+    <Resource Include="Images\roma.png" />
+    <Resource Include="Images\sampdoria.png" />
+    <Resource Include="Images\sassuolo.png" />
+    <Resource Include="Images\spezia.png" />
+    <Resource Include="Images\torino.png" />
+    <Resource Include="Images\udinese.png" />
+    <Resource Include="Images\verona.png" />
   </ItemGroup>
 
 </Project>

@@ -190,7 +190,7 @@ namespace EasyFanta.ViewModels
         public void AddTeam(string name)
         {
             AllTeams.Add(new Team(AllTeams.Count, 
-                                  string.IsNullOrEmpty(name) ? "Teams" + AllTeams.Count : name, 
+                                  string.IsNullOrEmpty(name) ? "Team" + AllTeams.Count : name, 
                                   settings.AvailableAmount,
                                   settings.MaxGoalKeepers,
                                   settings.MaxDefenders,
