@@ -116,7 +116,10 @@ namespace EasyFanta.ViewModels
                         worksheet.Cells[i, 4].Value.ToString(),
                         worksheet.Cells[i, 2].Value.ToString(),
                         worksheet.Cells[i, 3].Value.ToString(),
-                        int.Parse(worksheet.Cells[i, 7].Value.ToString())));
+                        int.Parse(worksheet.Cells[i, 7].Value.ToString()),
+                        worksheet.Cells[i, 11].Value != null ? worksheet.Cells[i, 11].Value.ToString() : string.Empty,
+                        worksheet.Cells[i, 12].Value != null ? worksheet.Cells[i, 12].Value.ToString() : string.Empty
+                        ));
                 }
             }
             else
@@ -128,7 +131,9 @@ namespace EasyFanta.ViewModels
                         worksheet.Cells[i, 2].Value.ToString(),
                         worksheet.Cells[i, 3].Value.ToString(),
                         worksheet.Cells[i, 4].Value.ToString(),
-                        int.Parse(worksheet.Cells[i, 5].Value.ToString())));
+                        int.Parse(worksheet.Cells[i, 5].Value.ToString()),
+                        string.Empty,
+                        string.Empty));
                 }
             }
 

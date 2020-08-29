@@ -74,6 +74,7 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="130"/>
                 <DataGridTextColumn Header="Team" Binding="{Binding Team}" Width="100"/>
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="40"/>
+                <DataGridTextColumn Header="Attributes" Binding="{Binding Attributes}" Width="40"/>
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
@@ -94,8 +95,8 @@
 
 
 
-
-        <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllTeams}">
+        <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+        <ItemsControl  ItemsSource="{Binding AllTeams}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -107,6 +108,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
+        </ScrollViewer>
     </Grid>
 </Window>
