@@ -12,8 +12,8 @@
     <Window.Resources>
         <CollectionViewSource Source="{Binding AllAvailablePlayers}" x:Key="playersViewSource"  >
             <CollectionViewSource.SortDescriptions>
-                <scm:SortDescription PropertyName="Price"/>
-                <scm:SortDescription PropertyName="Name"/>
+                <scm:SortDescription PropertyName="Price" Direction="Descending"/>
+                <scm:SortDescription PropertyName="Name" Direction="Ascending"/>
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </Window.Resources>

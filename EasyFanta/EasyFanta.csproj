@@ -11,6 +11,7 @@
     <None Remove="Images\atalanta.png" />
     <None Remove="Images\benevento.png" />
     <None Remove="Images\bologna.png" />
+    <None Remove="Images\BulkResizePhotos.zip" />
     <None Remove="Images\cagliari.png" />
     <None Remove="Images\crotone.png" />
     <None Remove="Images\fiorentina.png" />
