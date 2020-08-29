@@ -75,27 +75,30 @@ namespace EasyFanta.ViewModels
 
         public void ReloadPlayers(string filePath)
         {
-            AllAvailablePlayers.Clear();
-            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-
-            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            if (File.Exists(filePath))
             {
-                ExcelWorkbook workbook = package.Workbook;
-                if (workbook != null)
+                AllAvailablePlayers.Clear();
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                using (var package = new ExcelPackage(new FileInfo(filePath)))
                 {
-                    if (workbook.Worksheets.Count > 0)
+                    ExcelWorkbook workbook = package.Workbook;
+                    if (workbook != null)
                     {
-                        ExcelWorksheet worksheet = workbook.Worksheets.First();
-                        foreach (Player p in WorksheetToPlayers(worksheet))
+                        if (workbook.Worksheets.Count > 0)
                         {
-                            if (!IsPlayerAlreadyOwned(p))
+                            ExcelWorksheet worksheet = workbook.Worksheets.First();
+                            foreach (Player p in WorksheetToPlayers(worksheet))
                             {
-                                AllAvailablePlayers.Add(p);
-                            }                            
-                        }                        
+                                if (!IsPlayerAlreadyOwned(p))
+                                {
+                                    AllAvailablePlayers.Add(p);
+                                }
+                            }
+                        }
                     }
                 }
-            }            
+            }
         }
 
         private List<Player> WorksheetToPlayers(ExcelWorksheet worksheet)
