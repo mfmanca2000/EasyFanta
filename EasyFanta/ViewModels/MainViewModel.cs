@@ -111,15 +111,18 @@ namespace EasyFanta.ViewModels
             {
                 for (int i = 6; i <= rows; i++)
                 {
-                    players.Add(new Player(
-                        int.Parse(worksheet.Cells[i, 1].Value.ToString()),
-                        worksheet.Cells[i, 4].Value.ToString(),
-                        worksheet.Cells[i, 2].Value.ToString(),
-                        worksheet.Cells[i, 3].Value.ToString(),
-                        int.Parse(worksheet.Cells[i, 7].Value.ToString()),
-                        worksheet.Cells[i, 11].Value != null ? worksheet.Cells[i, 11].Value.ToString() : string.Empty,
-                        worksheet.Cells[i, 12].Value != null ? worksheet.Cells[i, 12].Value.ToString() : string.Empty
-                        ));
+                    if (! worksheet.Cells[i, 6].Value.Equals("*"))
+                    {
+                        players.Add(new Player(
+                            int.Parse(worksheet.Cells[i, 1].Value.ToString()),
+                            worksheet.Cells[i, 4].Value.ToString(),
+                            worksheet.Cells[i, 2].Value.ToString(),
+                            worksheet.Cells[i, 3].Value.ToString(),
+                            int.Parse(worksheet.Cells[i, 7].Value.ToString()),
+                            worksheet.Cells[i, 11].Value != null ? worksheet.Cells[i, 11].Value.ToString() : string.Empty,
+                            worksheet.Cells[i, 12].Value != null ? worksheet.Cells[i, 12].Value.ToString() : string.Empty
+                            ));
+                    }
                 }
             }
             else
