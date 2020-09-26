@@ -69,6 +69,12 @@
     <Resource Include="Images\verona.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="fc_quotazioni_serie-a_01.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
